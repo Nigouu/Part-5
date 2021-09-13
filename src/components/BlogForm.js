@@ -1,8 +1,9 @@
 import React, {useState} from 'react' 
+// import blogs from '../services/blogs'
 // import Notification from '../components/Error'
 
 
-const BlogForm = ({ createBlog }) => {
+const BlogForm = ({ createBlog, user }) => {
     // onSubmit, handleChange1, handleChange2, handleChange3, value1, value2, value3}) => {
     
     const [newBlogTitle, setNewBlogTitle] = useState('')
@@ -30,12 +31,14 @@ const BlogForm = ({ createBlog }) => {
 
     const addBlog = async (event) => {
     event.preventDefault()
-    createBlog = 
+    createBlog 
     // await blogService.create 
     ({
         title: newBlogTitle,
         author: newBlogAuthor,
         url: newBlogUrl,
+        likes: 0,
+        user: user
     })
     // setBlogs(blogs.concat(blogObject))
     // setType('notification')
@@ -47,6 +50,23 @@ const BlogForm = ({ createBlog }) => {
     setNewBlogAuthor('')
     setNewBlogUrl('')
     }
+    
+    return (
+        <div>
+          <h2>Create new</h2>
+          <form onSubmit={addBlog}>
+            title: <input value={newBlogTitle} onChange={handleBlogTitleChange}/> <br/>
+            author: <input value={newBlogAuthor} onChange={handleBlogAuthorChange}/> <br/>
+            url: <input value={newBlogUrl} onChange={handleBlogUrlChange}/> <br/>
+            <button type="submit">create new blog</button>
+          </form>
+        </div>
+      )
+    }
+
+export default BlogForm
+
+
 
     // const blogForm = () => {
         // <Togglable buttonLabel="new blog">
@@ -61,34 +81,20 @@ const BlogForm = ({ createBlog }) => {
         //   />
         // </Togglable>
     // }
-    
-    return (
-        <div>
-          <h2>Create new</h2>
-          <form onSubmit={addBlog}>
-            title: <input value={newBlogTitle} onChange={handleBlogTitleChange}/> <br/>
-            author: <input value={newBlogAuthor} onChange={handleBlogAuthorChange}/> <br/>
-            url: <input value={newBlogUrl} onChange={handleBlogUrlChange}/> <br/>
-            <button type="submit">create new blog</button>
-          </form>
-          
-          {/* <form onSubmit={onSubmit}>
-            Title: <input
-              value={value1}
-              onChange={handleChange1}
-            /> <br/>
-            Author: <input
-              value={value2}
-              onChange={handleChange2}
-            /><br/>
-            Url: <input
-              value={value3}
-              onChange={handleChange3}
-            /><br/>
-            <button type="submit">create</button>
-          </form> */}
-        </div>
-      )
-    }
 
-export default BlogForm
+
+// <form onSubmit={onSubmit}>
+// Title: <input
+//  value={value1}
+//  onChange={handleChange1}
+// /> <br/>
+// Author: <input
+//  value={value2}
+//  onChange={handleChange2}
+// /><br/>
+// Url: <input
+//  value={value3}
+//  onChange={handleChange3}
+// /><br/>
+// <button type="submit">create</button>
+// </form>

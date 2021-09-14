@@ -9,8 +9,8 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   // const [type, setType] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const App = () => {
   }
 
   function refreshPage(){
-    window.location.reload();
+    window.location.reload()
   }
 
   const updateLikes = (id, blogObject) => {
@@ -51,7 +51,7 @@ const App = () => {
       .then(returnedBlog => {
         setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
       })
-      refreshPage()
+    refreshPage()
   }
 
   const delBlog = (id) => {
@@ -71,19 +71,19 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    try 
+    try
     {
       const user = await loginService.login({
         username, password,
       })
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
-      ) 
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
-    } 
+    }
     catch (exception) {
       // setType('error')
       setErrorMessage('Wrong credentials')
@@ -117,7 +117,7 @@ const App = () => {
 
   const sort = (blogs) => {
     blogs.sort(function (a, b) {
-      return b.likes - a.likes;
+      return b.likes - a.likes
     })
   }
 
@@ -132,12 +132,12 @@ const App = () => {
           <p>{user.name} logged in</p>
           {blogForm()}
         </div>
-        }
+      }
       <div>
         {sort(blogs)}
         {blogs.map(blog =>
-            <Blog key={blog.id} blog={blog} updateLikes={updateLikes} user={user} delBlog={delBlog}/>
-          )}
+          <Blog key={blog.id} blog={blog} updateLikes={updateLikes} user={user} delBlog={delBlog}/>
+        )}
       </div>
     </div>
   )

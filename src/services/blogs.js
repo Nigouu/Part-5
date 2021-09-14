@@ -31,4 +31,4 @@ const del = (id) => {
   return request.then(response => response.data)
 }
 
-export default { getAll, create, update, setToken, del}
+export default { getAll, create, update, setToken, del }

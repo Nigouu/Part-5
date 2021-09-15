@@ -31,7 +31,7 @@ const Blog = ({ blog, updateLikes, user, delBlog }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='blog' >
       <div>
         <div>
         Title: {blog.title}, Author: {blog.author}
@@ -41,7 +41,7 @@ const Blog = ({ blog, updateLikes, user, delBlog }) => {
 
           Likes: {blog.likes} <button onClick={addLikes}>like</button>
           <br/>
-          User: {user.name}
+          {/* User: {user.name} */}
           <button onClick={deleteBlog}>delete</button>
         </Togglable>
         <br/>

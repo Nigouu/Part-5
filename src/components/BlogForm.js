@@ -50,7 +50,7 @@ const BlogForm = ({ createBlog, user }) => {
   }
 
   return (
-    <div>
+    <div className="formDiv" >
       <h2>Create new</h2>
       <form onSubmit={addBlog}>
         title: <input value={newBlogTitle} onChange={handleBlogTitleChange}/> <br/>

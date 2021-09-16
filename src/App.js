@@ -12,7 +12,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  // const [type, setType] = useState('')
+  const [type, setType] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
   const blogFormRef = useRef()
@@ -38,6 +38,7 @@ const App = () => {
       .create(blogObject)
       .then(returnedBlog => {
         setBlogs(blogs.concat(returnedBlog))
+        setType('notification')
       })
   }
 
@@ -85,8 +86,8 @@ const App = () => {
       setPassword('')
     }
     catch (exception) {
-      // setType('error')
-      setErrorMessage('Wrong credentials')
+      setType('error')
+      setErrorMessage('wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -125,7 +126,7 @@ const App = () => {
   return (
     <div>
       <h1>Blogs</h1>
-      <Notification message={errorMessage} />
+      <Notification message={errorMessage} type={type} />
       {user === null ?
         loginForm() :
         <div>

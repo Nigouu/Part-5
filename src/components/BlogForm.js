@@ -13,19 +13,19 @@ const BlogForm = ({ createBlog, user }) => {
   // const [type, setType] = useState('')
 
   const handleBlogTitleChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setNewBlogTitle(event.target.value)
   }
 
 
   const handleBlogAuthorChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setNewBlogAuthor(event.target.value)
   }
 
 
   const handleBlogUrlChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setNewBlogUrl(event.target.value)
   }
 

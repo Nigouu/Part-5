@@ -65,38 +65,38 @@ describe('Blog app', function() {
       cy.contains('create').click()
 
       cy.contains('new blog').click()
-      cy.get('#Btitle').type('a blog created by cypress')
+      cy.get('#Btitle').type('a blog')
       cy.get('#Bauthor').type('yaass')
       cy.get('#Burl').type('www.www.www')
       cy.contains('create').click()
     })
 
-    // it('one of them can be liked', function () {
-    //   cy.contains('a blog created by cypress')
-    //   cy.contains('show').click()
-    //   cy.contains('like').click()
-    //   cy.contains('a blog created by cypress')
-    //   cy.contains('show').click()
-    //   cy.contains(1)
-    // })
+    it('one of them can be liked', function () {
+      cy.contains('a blog')
+      cy.contains('show').click()
+      cy.contains('like').click()
+      cy.contains('a blog')
+      cy.contains('show').click()
+      cy.contains(1)
+    })
 
-    // it('one of them can be removed', function () {
-    //   cy.contains('a blog created by cypress')
-    //   cy.contains('show').click()
-    //   cy.contains('delete').click()
-    //   cy.contains('a blog created by cypress').should('not.exist')
-    // })
+    it('one of them can be removed', function () {
+      cy.contains('a blog')
+      cy.contains('show').click()
+      cy.contains('delete').click()
+      cy.contains('a blog').should('not.exist')
+    })
 
-    // it('a new blog can be created', function() {
-    //   cy.contains('new blog').click()
-    //   cy.get('#Btitle').type('a blog')
-    //   cy.get('#Bauthor').type('yaass')
-    //   cy.get('#Burl').type('www.www.www')
-    //   cy.contains('create').click()
-    //   cy.contains('a blog')
-    //   cy.contains('yaass')
-    //   cy.contains('www.www.www')
-    // })
+    it('a new blog can be created', function() {
+      cy.contains('new blog').click()
+      cy.get('#Btitle').type('a blog')
+      cy.get('#Bauthor').type('yaass')
+      cy.get('#Burl').type('www.www.www')
+      cy.contains('create').click()
+      cy.contains('a blog')
+      cy.contains('yaass')
+      cy.contains('www.www.www')
+    })
 
     it('blogs are ordered', function() {
       // like the first blog
@@ -118,26 +118,49 @@ describe('Blog app', function() {
       cy.get('#blogs').contains('scrump').contains('show').click()
       cy.get('#blogs').contains('scrump').contains('like').click()
       // sort the blogs
-      // cy.get('.blog').then(blogs => {
-      //   // blogs = list of blogs
-      //   // kato mapin avulla et ne on järjestyksessä
-      //   blogs.map(blog => {
-      //     console.log(blog)
-      //     console.log(blogs)
-      //   })
-      // })
-      cy.get('.blog').then(blogs => {
-        console.log(blogs)
-        blogs.map(b => {
-          const y = cy.get('#likes')
-          console.log(y)
-          console.log(b)
+      cy.get('div#Likes').first().then(function(first){
+        let previousLikes = Number(first.text())
+        cy.get('div#Likes').each(element => {
+          const likes = Number(element.text())
+          console.log(likes)
+          expect(likes).to.be.lte(previousLikes)
         })
       })
     })
   })
 })
 
-// cy.get('#blogs').each((item, index, list) => {
-//   expect(list).to.have.length(3)
+// cy.get('#blogs').contains('a bloof').contains('show').click({ force: true } )
+// cy.get('#blogs').contains('a bloof').contains('like').get('#Likes').then(sikes => {
+//   const Sikes = sikes.text()
+//   console.log(Sikes)
 // })
+// cy.get('#Likes').should('be.visible')
+
+// cy.get('.blog').each((item, index, list) => {
+// expect(list).to.have.length(3)
+// console.log(item.text())
+// console.log(index)
+
+// cy.get('.blog').contains(item.text()).contains('show').click()
+// cy.get('.blog').get('div#Likes').then((likes) => {
+//   const Likes = likes.text()
+//   console.log(Likes)
+// })
+// cy.get('.blog').contains(item.text()).contains('hide').click()
+// })
+
+// cy.get('.blog').then(blogs => {
+
+//   // blogs = list of blogs
+//   // kato mapin avulla et ne on järjestyksessä
+//   blogs.map(blog => {
+//     cy.get('#Likes').then((likes) => {
+//       const lol = likes.text()
+//       console.log(lol)
+//     })
+//   })
+// })
+// cy.get('.blog')
+//   .get('show')
+//   .click({ multiple: true })

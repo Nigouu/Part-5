@@ -32,22 +32,23 @@ const Blog = ({ blog, updateLikes, user, delBlog }) => {
 
   return (
     <div style={blogStyle} className='blog' >
-      <div>
+      {/* <div> */}
         Title: {blog.title}, Author: {blog.author}
-        <div>
-          <Togglable buttonLabel='show' buttonLabel2='hide'>
-            Url: {blog.url} <br/>
-            <div id='likes'>
-            Likes: {blog.likes}
-            </div>
-            <button onClick={addLikes}>like</button>
-            <br/>
-            {/* User: {user.name} */}
-            <button onClick={deleteBlog}>delete</button>
-          </Togglable>
-        </div>
+      {/* <div> */}
+      {/* Likes: <div id='Likes'>{blog.likes}</div> */}
+      <Togglable buttonLabel='show' buttonLabel2='hide'>
+        Url: {blog.url} <br/>
+        {/* <div id='likes'> */}
+        Likes: <div id='Likes'>{blog.likes}</div>
+        {/* </div> */}
+        <button onClick={addLikes}>like</button>
         <br/>
-      </div>
+        {/* User: {user.name} */}
+        <button onClick={deleteBlog}>delete</button>
+      </Togglable>
+      {/* </div> */}
+      <br/>
+      {/* </div> */}
     </div>
   )
 }

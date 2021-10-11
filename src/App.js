@@ -1,28 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Blog from './components/Blog'
+import React, { useState, useEffect, 
+  // useRef 
+} from 'react'
+// import Blog from './components/Blog'
 import Notification from './components/Error'
 import LoginForm from './components/LoginForm'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogForm from './components/BlogForm'
-import Togglable from './components/Togglable'
+// import Togglable from './components/Togglable'
 import BlogList from './components/BlogList'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
+  // const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [type, setType] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
-  const blogFormRef = useRef()
+  // const blogFormRef = useRef()
 
-  useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )
-  }, [])
+  // useEffect(() => {
+  //   blogService.getAll().then(blogs =>
+  //     setBlogs( blogs )
+  //   )
+  // }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
@@ -33,43 +35,43 @@ const App = () => {
     }
   }, [])
 
-  const addBlog = (blogObject) => {
-    blogFormRef.current.toggleVisibility()
-    blogService
-      .create(blogObject)
-      .then(returnedBlog => {
-        setBlogs(blogs.concat(returnedBlog))
-        setType('notification')
-      })
-  }
+  // const addBlog = (blogObject) => {
+  //   blogFormRef.current.toggleVisibility()
+  //   blogService
+  //     .create(blogObject)
+  //     .then(returnedBlog => {
+  //       setBlogs(blogs.concat(returnedBlog))
+  //       setType('notification')
+  //     })
+  // }
 
-  function refreshPage(){
-    window.location.reload()
-  }
+  // function refreshPage(){
+  //   window.location.reload()
+  // }
 
-  const updateLikes = (id, blogObject) => {
-    blogService
-      .update(id, blogObject)
-      .then(returnedBlog => {
-        setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
-      })
-    refreshPage()
-  }
+  // const updateLikes = (id, blogObject) => {
+  //   blogService
+  //     .update(id, blogObject)
+  //     .then(returnedBlog => {
+  //       setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
+  //     })
+  //   refreshPage()
+  // }
 
-  const delBlog = (id) => {
-    blogService
-      .del(id)
-      .then(refreshPage())
-      // .then(returnedBlog => {
-      //   setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
-      // })
-  }
+  // const delBlog = (id) => {
+  //   blogService
+  //     .del(id)
+  //     .then(refreshPage())
+  //     // .then(returnedBlog => {
+  //     //   setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
+  //     // })
+  // }
 
-  const blogForm = () => (
-    <Togglable buttonLabel='new blog' buttonLabel2='cancel' ref={blogFormRef}>
-      <BlogForm createBlog={addBlog} user={user}/>
-    </Togglable>
-  )
+  // const blogForm = () => (
+  //   <Togglable buttonLabel='new blog' buttonLabel2='cancel' ref={blogFormRef}>
+  //     <BlogForm createBlog={addBlog} user={user}/>
+  //   </Togglable>
+  // )
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -117,11 +119,11 @@ const App = () => {
     )
   }
 
-  const sort = (blogs) => {
-    blogs.sort(function (a, b) {
-      return b.likes - a.likes
-    })
-  }
+  // const sort = (blogs) => {
+  //   blogs.sort(function (a, b) {
+  //     return b.likes - a.likes
+  //   })
+  // }
 
 
   return (
@@ -133,7 +135,8 @@ const App = () => {
         loginForm() :
         <div>
           <p>{user.name} logged in</p>
-          {blogForm()}
+          {/* {blogForm()} */}
+          <BlogForm/>
         </div>
       }
       <div>

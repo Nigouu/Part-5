@@ -1,10 +1,10 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Togglable from '../components/Togglable'
 
 const BlogList = () => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     // const vote = (id, anecdote) => {
     //     console.log('vote', id)

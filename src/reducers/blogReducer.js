@@ -1,3 +1,6 @@
+
+import blogService from '../services/blogs'
+
 const blogReducer = (state = [], action) => {
     switch (action.type) {
     //   case 'VOTE':
@@ -26,10 +29,13 @@ const blogReducer = (state = [], action) => {
     }
   }
   
-  export const createBlog = (data) => {
-    return {
-      type: 'NEW_BLOG',
-      data,
+  export const createBlog = (newObject) => {
+    return async dispatch => {
+      const newBlog = await blogService.create(newObject)
+      dispatch({
+        type: 'NEW_BLOG',
+        data: newBlog,
+      })
     }
   }
   

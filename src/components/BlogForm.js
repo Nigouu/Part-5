@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 // import blogs from '../services/blogs'
 // import Notification from '../components/Error'
 
 
 const BlogForm = ({ createBlog, user }) => {
   // onSubmit, handleChange1, handleChange2, handleChange3, value1, value2, value3}) => {
-
+  const dispatch = useDispatch()
   const [newBlogTitle, setNewBlogTitle] = useState('')
   const [newBlogAuthor, setNewBlogAuthor] = useState('')
   const [newBlogUrl, setNewBlogUrl] = useState('')

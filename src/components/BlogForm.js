@@ -37,7 +37,7 @@ const BlogForm = ({ user }) => {
     }
     dispatch(createBlog(newObject))
     // dispatch(setNotification(`${newObject.title} has been added'`, 10))
-    dispatch(setNotification({newObject}, 10))
+    dispatch(setNotification(`${newObject.title} was added`, 10))
     console.log(newObject.title, "det lyckades");
     // createBlog({
     //   title: newBlogTitle,

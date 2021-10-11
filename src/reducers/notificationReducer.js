@@ -5,7 +5,7 @@ const notification = [
   const notificationReducer = (state = notification, action) => {
     switch (action.type) {
       case 'NOTIFICATION':
-        const updatedNotification = ''.concat(action.content, ' has been added')
+        const updatedNotification = ''.concat(action.text)
         return updatedNotification
       case 'HIDE_NOTIFICATION':
         const hideNotification = ''

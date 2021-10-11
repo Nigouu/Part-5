@@ -17,6 +17,8 @@ const blogReducer = (state = [], action) => {
         return state.concat(action.data)
       case 'INIT_BLOGS':
         return action.data
+      case 'DELETE':
+        return refreshPage()
       default:
         return state
     }
@@ -46,6 +48,19 @@ const blogReducer = (state = [], action) => {
         type: 'LIKE',
         id: id,
         data: newLikes
+      })
+    }
+  }
+
+  function refreshPage(){
+    window.location.reload()
+  }
+
+  export const delBlog = (id) => {
+    return async dispatch => {
+      await blogService.del(id)
+      dispatch({
+        type: 'DELETE'
       })
     }
   }

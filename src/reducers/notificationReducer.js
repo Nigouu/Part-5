@@ -13,7 +13,21 @@ const notification = [
       default:
         return state
     }
-    
   }
+
+  export const setNotification = (textEntered, timeDisplayed) => {
+
+    const time = timeDisplayed * 100
+
+    return async dispatch => {
+      dispatch({
+        type: 'NOTIFICATION',
+        text: textEntered
+      })
+      setTimeout(() => {
+        dispatch({type: 'HIDE_NOTIFICATION'})
+      }, time)
+    }
+}
   
   export default notificationReducer

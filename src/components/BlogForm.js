@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createBlog } from '../reducers/blogReducer'
-
+import { setNotification } from '../reducers/notificationReducer'
 
 
 const BlogForm = ({ user }) => {
@@ -36,6 +36,9 @@ const BlogForm = ({ user }) => {
       user: user
     }
     dispatch(createBlog(newObject))
+    // dispatch(setNotification(`${newObject.title} has been added'`, 10))
+    dispatch(setNotification({newObject}, 10))
+    console.log(newObject.title, "det lyckades");
     // createBlog({
     //   title: newBlogTitle,
     //   author: newBlogAuthor,

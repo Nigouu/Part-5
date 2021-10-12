@@ -45,7 +45,7 @@ const BlogList = () => {
                     Url: {blog.url} <br/>
           
                     Likes: {blog.likes} 
-                    <button onClick={() => addLikes(blog.id, blog)}>vote</button>
+                    <button onClick={() => addLikes(blog.id, blog)}>like</button>
                     <br/>
                     <button onClick={() => deleteBlog(blog.id)}>delete</button>
                   </Togglable>

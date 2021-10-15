@@ -16,7 +16,7 @@ const UserInfo = () => {
                 <div key={user.id}>
                 <div>
                   <div>
-                  User: {user.username}
+                  {user.username}, Number of Blogs: {user.blog.length}
                   </div>
                   <br/>
                 </div>

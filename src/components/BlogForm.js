@@ -36,22 +36,8 @@ const BlogForm = ({ user }) => {
       user: user
     }
     dispatch(createBlog(newObject))
-    // dispatch(setNotification(`${newObject.title} has been added'`, 10))
     dispatch(setNotification(`${newObject.title} was added`, 10))
     console.log(newObject.title, "det lyckades");
-    // createBlog({
-    //   title: newBlogTitle,
-    //   author: newBlogAuthor,
-    //   url: newBlogUrl,
-    //   likes: 0,
-    //   user: user
-    // })
-    // setBlogs(blogs.concat(blogObject))
-    // setType('notification')
-    // setErrorMessage(`${newBlogTitle} by ${newBlogAuthor} was added`)
-    //     setTimeout(() => {
-    //     setErrorMessage(null)
-    //     }, 5000)
     setNewBlogTitle('')
     setNewBlogAuthor('')
     setNewBlogUrl('')

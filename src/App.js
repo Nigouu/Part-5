@@ -8,21 +8,29 @@ import loginService from './services/login'
 import BlogForm from './components/BlogForm'
 // import Togglable from './components/Togglable'
 import BlogList from './components/BlogList'
+import { setLogin } from './reducers/loginReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      dispatch(setLogin(user))
+      // setUser(user)
       blogService.setToken(user.token)
     }
-  }, [])
+  }, [dispatch])
+
+  const user = useSelector(({user}) => {
+    return user
+  })
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -35,7 +43,8 @@ const App = () => {
         'loggedNoteappUser', JSON.stringify(user)
       )
       blogService.setToken(user.token)
-      setUser(user)
+      dispatch(setLogin(user))
+      // setUser(user)
       setUsername('')
       setPassword('')
     }

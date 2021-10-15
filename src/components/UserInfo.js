@@ -16,7 +16,6 @@ const UserInfo = () => {
 
     return(
         <div>
-            
             {ThisUser === null 
             ? 
             <div>
@@ -41,9 +40,13 @@ const UserInfo = () => {
                         ? 
                         <div>
                              <h3> Added Blogs </h3>
-                                {user.blog.forEach(
-                                    item => console.log(item.title)
+                             <div>
+                                {user.blog.forEach(blog => console.log(blog.title)
+                                // <div>
+                                //     {blog.title}
+                                // </div>
                                 )}
+                             </div>
                         </div>
                         : 
                         <div>

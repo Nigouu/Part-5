@@ -9,19 +9,44 @@ const UserInfo = () => {
         return users
     })
 
+    const user = useSelector(({user}) => {
+        console.log(users);
+        return user
+    })
+
     return(
         <div>
-            <h2>Users</h2>
-            {users.map(user =>
-                <div key={user.id}>
-                <div>
-                  <div>
-                  {user.username}, Number of Blogs: {user.blog.length}
-                  </div>
-                  <br/>
-                </div>
-               </div>
-            )}
+            
+            {user === null 
+            ? 
+            <div>
+                <h2>Users</h2>
+                {users.map(user =>
+                    <div key={user.id}>
+                        <div>
+                            <div>
+                                {user.username}, Number of Blogs: {user.blog.length}
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                )}
+            </div>
+            :
+            <div>
+                <h2>{user.name}</h2>
+                {/* {users.map(user =>
+                    <div key={user.id}>
+                        <div>
+                            <div>
+                                {user.username}, Number of Blogs: {user.blog.length}
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                )} */}
+            </div>
+            }
         </div>
     )
 }

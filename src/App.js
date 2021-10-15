@@ -8,6 +8,7 @@ import loginService from './services/login'
 import BlogForm from './components/BlogForm'
 // import Togglable from './components/Togglable'
 import BlogList from './components/BlogList'
+import UserInfo from './components/UserInfo'
 import { setLogin } from './reducers/loginReducer'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -87,6 +88,7 @@ const App = () => {
         </div>
       }
         <BlogList/>
+        <UserInfo/>
     </div>
   )
 }

@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux'
 
 const UserInfo = () => {
 
-    // const users = useSelector(({users}) => {
-    //     console.log(users);
-    //     return users
-    // })
+    const users = useSelector(({users}) => {
+        console.log(users);
+        return users
+    })
 
     return(
         <div>
             <h2>Users</h2>
-            {/* {users.map(user =>
+            {users.map(user =>
                 <div key={user.id}>
                 <div>
                   <div>
@@ -21,7 +21,7 @@ const UserInfo = () => {
                   <br/>
                 </div>
                </div>
-            )} */}
+            )}
         </div>
     )
 }

@@ -1,6 +1,3 @@
-import loginService from '../services/login'
-import blogService from '../services/blogs'
-
 const user = null
 
 const loginReducer = (state = user, action) => {

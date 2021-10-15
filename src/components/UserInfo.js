@@ -9,7 +9,7 @@ const UserInfo = () => {
         return users
     })
 
-    const user = useSelector(({user}) => {
+    const ThisUser = useSelector(({user}) => {
         console.log(users);
         return user
     })
@@ -17,7 +17,7 @@ const UserInfo = () => {
     return(
         <div>
             
-            {user === null 
+            {ThisUser === null 
             ? 
             <div>
                 <h2>Users</h2>
@@ -34,17 +34,23 @@ const UserInfo = () => {
             </div>
             :
             <div>
-                <h2>{user.name}</h2>
-                {/* {users.map(user =>
+                <h2>{ThisUser.name}</h2>
+                {users.map(user =>
                     <div key={user.id}>
+                        {user.username === ThisUser.username 
+                        ? 
                         <div>
-                            <div>
-                                {user.username}, Number of Blogs: {user.blog.length}
-                            </div>
-                            <br/>
+                             <h3> Added Blogs </h3>
+                                {user.blog.forEach(
+                                    item => console.log(item.title)
+                                )}
                         </div>
+                        : 
+                        <div>
+                        </div>
+                        }
                     </div>
-                )} */}
+                )}
             </div>
             }
         </div>

@@ -17,10 +17,10 @@ const IndividualUserInfo = () => {
                 <h2>{individualUser.name}</h2>
                 <h3> Added Blogs </h3>
                     <div>
-                        {individualUser.blog.forEach(blog => console.log(blog.title)
-                            // <div>
-                            //     {blog.title}
-                            // </div>
+                        {individualUser.blog.map(blog => 
+                            <div key={blog.id}>
+                                {blog.title}
+                            </div>
                         )}
                     </div>
             </div>

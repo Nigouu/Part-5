@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+    // eslint-disable-next-line no-unused-vars
     BrowserRouter as Router, Link
   } from "react-router-dom"
-  import { setIndividual } from '../reducers/IndividualUserReducer'
+import { setIndividual } from '../reducers/IndividualUserReducer'
 
 
 const UserInfo = () => {
@@ -11,7 +12,7 @@ const UserInfo = () => {
     const dispatch = useDispatch()
 
     const users = useSelector(({users}) => {
-        console.log(users);
+        // console.log(users);
         return users
     })
 

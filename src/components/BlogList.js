@@ -1,26 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import Togglable from '../components/Togglable'
-import { setNotification } from '../reducers/notificationReducer'
-import { setBlogLikes } from '../reducers/blogReducer'
-import { delBlog } from '../reducers/blogReducer'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  // eslint-disable-next-line no-unused-vars
+  BrowserRouter as Router, Link
+} from "react-router-dom"
+import { setIndividualBlog } from '../reducers/IndividualBlogReducer'
 
 const BlogList = () => {
-
     const dispatch = useDispatch()
-
-    const addLikes = (id, blog) => {
-        console.log('like', id)
-        const newObject = blog
-        dispatch(setBlogLikes(id, newObject))
-        dispatch(setNotification(`you liked ${blog.title}`, 10))
-      }
-
-      const deleteBlog = (id) => {
-        console.log('like', id)
-        dispatch(delBlog(id))
-      }
 
     const blogs = useSelector(({blogs}) => {
         return blogs
@@ -35,22 +22,17 @@ const BlogList = () => {
     return(
         <div>
             {sort(blogs)}
+            {/* {blogs.map(blog => console.log("Alla blogs state i listan: ", blog.title))} */}
             {blogs.map(blog =>
                 <div className='blog' key={blog.id}>
                 <div>
-                  <div>
-                  Title: {blog.title}, Author: {blog.author}
-                  </div>
-                  <Togglable buttonLabel='show' buttonLabel2='hide'>
-                    Url: {blog.url} <br/>
-          
-                    Likes: {blog.likes} 
-                    <button onClick={() => addLikes(blog.id, blog)}>vote</button>
-                    <br/>
-                    <button onClick={() => deleteBlog(blog.id)}>delete</button>
-                  </Togglable>
-                  <br/>
+                  <Link 
+                    to={`/blog/${blog.id}`} 
+                    onClick={() => dispatch(setIndividualBlog(blog))}> 
+                    Title: {blog.title}, Author: {blog.author}
+                  </Link>
                 </div>
+                <br/>
               </div>
             )}
         </div>

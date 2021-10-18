@@ -8,6 +8,7 @@ import loginService from './services/login'
 import BlogForm from './components/BlogForm'
 // import Togglable from './components/Togglable'
 import BlogList from './components/BlogList'
+import Blog from './components/Blog'
 import UserInfo from './components/UserInfo'
 import IndividualUserInfo from './components/IndividualUserInfo'
 import { setLogin } from './reducers/loginReducer'
@@ -44,9 +45,9 @@ const App = () => {
     }
     return (
       <div>
-        <Link to='/' style={padding} >Main</Link>
-        <Link to='/create' style={padding}>create new</Link>
-        {/* <Link to='/about' style={padding}>about</Link> */}
+        <Link to='/' style={padding} >Blogs</Link>
+        <Link to='/create' style={padding}>Create New</Link>
+        <Link to='/users' style={padding}>Users</Link>
       </div>
     )
   }
@@ -96,28 +97,30 @@ const App = () => {
   return (
     <div>
       <Router>
-      <h1>Blogs</h1>
-      <Menu />
-      <Notification/>
-      <Switch>
-
-        <Route path='/create'>
-          <BlogForm/>
-        </Route>
-
-        <Route path='/user'>
-          <IndividualUserInfo/>
-        </Route>
-
-        <Route path="/">
-          {user === null ? loginForm() :
-            <div>
-              <p>{user.name} logged in</p>
-            </div>}
-            <BlogList/>
+        <h1>Blogs</h1>
+        {user === null ? loginForm() :
+          <div>
+            <p>{user.name} logged in</p>
+          </div>
+        }
+        <Menu />
+        <Notification/>
+        <Switch>
+          <Route path='/create'>
+            <BlogForm/>
+          </Route>
+          <Route path='/user'>
+            <IndividualUserInfo/>
+          </Route>
+          <Route path='/users'>
             <UserInfo/>
           </Route>
-
+          <Route path='/blog' >
+            <Blog/>
+          </Route>
+          <Route path="/">
+            <BlogList/>
+          </Route>
         </Switch>
       </Router>
     </div>

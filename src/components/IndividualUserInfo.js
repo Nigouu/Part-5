@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const IndividualUserInfo = () => {
 
     const individualUser = useSelector(({individualUser}) => {
-        console.log(individualUser);
+        // console.log(individualUser);
         return individualUser
     })
 

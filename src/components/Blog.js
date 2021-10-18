@@ -1,26 +1,25 @@
 import React from 'react'
-import Togglable from '../components/Togglable'
+import { useSelector } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
+import { setBlogLikes } from '../reducers/blogReducer'
+import { delBlog } from '../reducers/blogReducer'
+import { useDispatch } from 'react-redux'
 
-const Blog = ({ blog, updateLikes, user, delBlog }) => {
+const Blog = () => {
 
-  // const [newLikes, setNewLikes] = useState(blog.likes)
+  const dispatch = useDispatch()
 
-  const addLikes = (event) => {
-    event.preventDefault()
-    // setNewLikes(blog.likes + 1)
-    updateLikes(blog.id, {
-      title: blog.title,
-      author: blog.author,
-      url: blog.url,
-      likes: blog.likes +1,
-      user: user
-    })
-  }
+  const addLikes = (id, blog) => {
+      console.log('like', id)
+      const newObject = blog
+      dispatch(setBlogLikes(id, newObject))
+      dispatch(setNotification(`you liked ${blog.title}`, 10))
+    }
 
-  const deleteBlog = (event) => {
-    event.preventDefault()
-    delBlog(blog.id)
-  }
+    const deleteBlog = (id) => {
+      console.log('like', id)
+      dispatch(delBlog(id))
+    }
 
   const blogStyle = {
     paddingTop: 10,
@@ -30,24 +29,32 @@ const Blog = ({ blog, updateLikes, user, delBlog }) => {
     marginBottom: 5
   }
 
+  const individualBlog = useSelector(({individualBlog}) => {
+    console.log(individualBlog);
+    return individualBlog
+  })
+
+  if (!individualBlog) {
+    return null
+} else {
   return (
     <div style={blogStyle} className='blog' >
+      <h2>{individualBlog.title}</h2>
       <div>
         <div>
-        Title: {blog.title}, Author: {blog.author}
+        Author: {individualBlog.author}
         </div>
-        <Togglable buttonLabel='show' buttonLabel2='hide'>
-          Url: {blog.url} <br/>
-
-          Likes: {blog.likes} <button onClick={addLikes}>like</button>
+          Url: {individualBlog.url} <br/>
+          Likes: {individualBlog.likes} <button onClick={addLikes}>like</button>
           <br/>
-          {/* User: {user.name} */}
+          Added by: {individualBlog.user.name}
+          <br/>
           <button onClick={deleteBlog}>delete</button>
-        </Togglable>
         <br/>
       </div>
     </div>
   )
+  }
 }
 
 export default Blog

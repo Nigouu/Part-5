@@ -7,6 +7,7 @@ import userService from './services/users'
 import loginReducer from './reducers/loginReducer'
 import userReducer from './reducers/userReducer'
 import IndividualUserReducer from './reducers/IndividualUserReducer'
+import IndividualBlogReducer from './reducers/IndividualBlogReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   blogs: blogReducer,
   user: loginReducer,
   users: userReducer,
-  individualUser: IndividualUserReducer
+  individualUser: IndividualUserReducer,
+  individualBlog: IndividualBlogReducer
 })
 
 const store = createStore(

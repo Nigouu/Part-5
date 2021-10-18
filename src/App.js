@@ -15,7 +15,7 @@ import { setLogin } from './reducers/loginReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   BrowserRouter as Router,
-  Switch, Route, Link
+  Switch, Route, Link, useHistory
 } from "react-router-dom"
 
 const App = () => {
@@ -24,6 +24,7 @@ const App = () => {
   // const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
@@ -64,6 +65,7 @@ const App = () => {
       )
       blogService.setToken(user.token)
       dispatch(setLogin(user))
+      history.push('/')
       // setUser(user)
       setUsername('')
       setPassword('')

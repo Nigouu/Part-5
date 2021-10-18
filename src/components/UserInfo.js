@@ -1,11 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
     BrowserRouter as Router, Link
   } from "react-router-dom"
+  import { setIndividual } from '../reducers/IndividualUserReducer'
 
 
 const UserInfo = () => {
+
+    const dispatch = useDispatch()
 
     const users = useSelector(({users}) => {
         console.log(users);
@@ -18,7 +21,9 @@ const UserInfo = () => {
             <ul>
             {users.map(user => 
                 <li key={user.id} >
-                <Link to={`/user/${user.id}`}>{user.username} , Number of Blogs: {user.blog.length}</Link>
+                <Link to={`/user/${user.id}`} onClick={() => dispatch(setIndividual(user))} > {user.username} , Number of Blogs: {user.blog.length}
+                
+                </Link>
                 </li>)}
             </ul>
         </div>

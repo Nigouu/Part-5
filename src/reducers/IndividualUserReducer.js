@@ -1,4 +1,6 @@
-const IndividualUserReducer = (state = [], action) => {
+const individualUser = null
+
+const IndividualUserReducer = (state = individualUser, action) => {
     switch (action.type) {
       case 'SET_USER':
         return action.data
@@ -7,10 +9,10 @@ const IndividualUserReducer = (state = [], action) => {
     }
   }
   
-  export const setIndividual = (user) => {
+  export const setIndividual = (individualUser) => {
     return {
       type: 'SET_USER',
-      data: user,
+      data: individualUser,
     }
   }
   

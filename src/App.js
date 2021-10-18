@@ -10,7 +10,6 @@ import BlogForm from './components/BlogForm'
 import BlogList from './components/BlogList'
 import UserInfo from './components/UserInfo'
 import IndividualUserInfo from './components/IndividualUserInfo'
-import { setIndividual } from './reducers/IndividualUserReducer'
 import { setLogin } from './reducers/loginReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -45,7 +44,7 @@ const App = () => {
     }
     return (
       <div>
-        <Link to='/' style={padding}>Main</Link>
+        <Link to='/' style={padding} >Main</Link>
         <Link to='/create' style={padding}>create new</Link>
         {/* <Link to='/about' style={padding}>about</Link> */}
       </div>
@@ -107,7 +106,6 @@ const App = () => {
         </Route>
 
         <Route path='/user'>
-          {/* {dispatch(setIndividual(user))} */}
           <IndividualUserInfo/>
         </Route>
 

@@ -1,5 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import {
+    BrowserRouter as Router, Link
+  } from "react-router-dom"
 
 
 const UserInfo = () => {
@@ -9,53 +12,15 @@ const UserInfo = () => {
         return users
     })
 
-    const ThisUser = useSelector(({user}) => {
-        console.log(users);
-        return user
-    })
-
     return(
         <div>
-            {ThisUser === null 
-            ? 
-            <div>
-                <h2>Users</h2>
-                {users.map(user =>
-                    <div key={user.id}>
-                        <div>
-                            <div>
-                                {user.username}, Number of Blogs: {user.blog.length}
-                            </div>
-                            <br/>
-                        </div>
-                    </div>
-                )}
-            </div>
-            :
-            <div>
-                <h2>{ThisUser.name}</h2>
-                {users.map(user =>
-                    <div key={user.id}>
-                        {user.username === ThisUser.username 
-                        ? 
-                        <div>
-                             <h3> Added Blogs </h3>
-                             <div>
-                                {user.blog.forEach(blog => console.log(blog.title)
-                                // <div>
-                                //     {blog.title}
-                                // </div>
-                                )}
-                             </div>
-                        </div>
-                        : 
-                        <div>
-                        </div>
-                        }
-                    </div>
-                )}
-            </div>
-            }
+            <h2>Users</h2>
+            <ul>
+            {users.map(user => 
+                <li key={user.id} >
+                <Link to={`/user/${user.id}`}>{user.username} , Number of Blogs: {user.blog.length}</Link>
+                </li>)}
+            </ul>
         </div>
     )
 }

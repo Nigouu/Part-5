@@ -9,8 +9,14 @@ import BlogForm from './components/BlogForm'
 // import Togglable from './components/Togglable'
 import BlogList from './components/BlogList'
 import UserInfo from './components/UserInfo'
+import IndividualUserInfo from './components/IndividualUserInfo'
+import { setIndividual } from './reducers/IndividualUserReducer'
 import { setLogin } from './reducers/loginReducer'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  BrowserRouter as Router,
+  Switch, Route, Link
+} from "react-router-dom"
 
 const App = () => {
   const [username, setUsername] = useState('')
@@ -32,6 +38,19 @@ const App = () => {
   const user = useSelector(({user}) => {
     return user
   })
+
+  const Menu = () => {
+    const padding = {
+      paddingRight: 5
+    }
+    return (
+      <div>
+        <Link to='/' style={padding}>Main</Link>
+        <Link to='/create' style={padding}>create new</Link>
+        {/* <Link to='/about' style={padding}>about</Link> */}
+      </div>
+    )
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -77,18 +96,32 @@ const App = () => {
 
   return (
     <div>
+      <Router>
       <h1>Blogs</h1>
+      <Menu />
       <Notification/>
-      {user === null ?
-        loginForm() :
-        <div>
-          <p>{user.name} logged in</p>
-          {/* {blogForm()} */}
+      <Switch>
+
+        <Route path='/create'>
           <BlogForm/>
-        </div>
-      }
-        <BlogList/>
-        <UserInfo/>
+        </Route>
+
+        <Route path='/user'>
+          {/* {dispatch(setIndividual(user))} */}
+          <IndividualUserInfo/>
+        </Route>
+
+        <Route path="/">
+          {user === null ? loginForm() :
+            <div>
+              <p>{user.name} logged in</p>
+            </div>}
+            <BlogList/>
+            <UserInfo/>
+          </Route>
+
+        </Switch>
+      </Router>
     </div>
   )
 }

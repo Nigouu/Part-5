@@ -19,6 +19,16 @@ const blogReducer = (state = [], action) => {
         return action.data
       case 'DELETE':
         return refreshPage()
+      case 'COMMENT':
+        const idC = action.id
+          const blogToComment = state.find(n => n.id === idC)
+          const changedBlogComment = { 
+            ...blogToComment, 
+            comments: blogToComment.comments.concat(action.comment)
+          }
+          return state.map(blog =>
+            blog.id !== idC ? blog : changedBlogComment 
+          )
       default:
         return state
     }
@@ -48,6 +58,18 @@ const blogReducer = (state = [], action) => {
         type: 'LIKE',
         id: id,
         data: newLikes
+      })
+    }
+  }
+
+  export const setBlogComments = (id, newObject, comment) => {
+    return async dispatch => {
+      const newComment = await blogService.update(id, newObject)
+      dispatch({
+        type: 'COMMENT',
+        id: id,
+        data: newComment,
+        comment
       })
     }
   }

@@ -5,10 +5,14 @@ import { setBlogLikes } from '../reducers/blogReducer'
 import { setBlogComments } from '../reducers/blogReducer'
 import { delBlog } from '../reducers/blogReducer'
 import { useDispatch } from 'react-redux'
+// eslint-disable-next-line no-unused-vars
+import { BrowserRouter as Router, useHistory } from "react-router-dom"
 
 const Blog = () => {
-  const [newBlogComment, setNewBlogComment] = useState('')
   const dispatch = useDispatch()
+  const history = useHistory()
+
+  const [newBlogComment, setNewBlogComment] = useState('')
 
   const addLikes = () => {
       const newObject = individualBlog
@@ -16,6 +20,9 @@ const Blog = () => {
       console.log('objecktet är är : ', newObject);
       dispatch(setBlogLikes(individualBlog.id, newObject))
       dispatch(setNotification(`you liked ${newObject.title}`, 10))
+      // setLocalBlogLikes(localBlogLikes + 1)
+      // history.push(`/blog/${individualBlog.id}`)
+      history.push('/')
   }
 
   const addComments = () => {
@@ -24,11 +31,13 @@ const Blog = () => {
     console.log('kommentaren är gjord', newBlogComment);
     dispatch(setBlogComments(individualBlog.id, newObject))
     dispatch(setNotification(`you commented on ${individualBlog.title}`, 10))
+    history.push('/')
   }
 
   const deleteBlog = () => {
     console.log('like', individualBlog.id)
     dispatch(delBlog(individualBlog.id))
+    history.push('/')
   }
 
   const handleBlogCommentChange = (event) => {
@@ -45,13 +54,16 @@ const Blog = () => {
   }
 
   const individualBlog = useSelector(({individualBlog}) => {
-    // console.log('den kan hämta blog comments: ',individualBlog.comments);
+    // console.log('this is it!!!',individualBlog.likes);
+    console.log(individualBlog);
     return individualBlog
   })
 
+  // const [localBlogLikes, setLocalBlogLikes] = useState(individualBlog.likes)
+
   if (!individualBlog) {
     return null
-} else {
+  } else {
   return (
     <div style={blogStyle} className='blog' >
       <h1>{individualBlog.title}</h1>

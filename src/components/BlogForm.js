@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
+// eslint-disable-next-line no-unused-vars
+import { BrowserRouter as Router, useHistory } from "react-router-dom"
 
 
 const BlogForm = ({ user }) => {
 
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const [newBlogTitle, setNewBlogTitle] = useState('')
   const [newBlogAuthor, setNewBlogAuthor] = useState('')
   const [newBlogUrl, setNewBlogUrl] = useState('')
@@ -40,9 +44,10 @@ const BlogForm = ({ user }) => {
     dispatch(createBlog(newObject))
     dispatch(setNotification(`${newObject.title} was added`, 10))
     // console.log(newObject.title, "det lyckades");
-    setNewBlogTitle('')
-    setNewBlogAuthor('')
-    setNewBlogUrl('')
+    history.push('/')
+    // setNewBlogTitle('')
+    // setNewBlogAuthor('')
+    // setNewBlogUrl('')
   }
 
   return (

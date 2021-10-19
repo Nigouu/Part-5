@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { setNotification } from '../reducers/notificationReducer'
 import { setBlogLikes } from '../reducers/blogReducer'
@@ -10,23 +10,25 @@ const Blog = () => {
   const [newBlogComment, setNewBlogComment] = useState('')
   const dispatch = useDispatch()
 
-  const addLikes = (id, blog) => {
-      console.log('like', id)
-      const newObject = blog
-      dispatch(setBlogLikes(id, newObject))
-      dispatch(setNotification(`you liked ${blog.title}`, 10))
+  const addLikes = () => {
+      const newObject = individualBlog
+      console.log('id är : ', individualBlog.id);
+      console.log('objecktet är är : ', newObject);
+      dispatch(setBlogLikes(individualBlog.id, newObject))
+      dispatch(setNotification(`you liked ${newObject.title}`, 10))
   }
 
-  const addComments = (id, blog) => {
-    console.log('like', id)
-    const newObject = blog
-    dispatch(setBlogComments(id, newObject, newBlogComment))
-    dispatch(setNotification(`you commented on ${blog.title}`, 10))
+  const addComments = () => {
+    const newObject = individualBlog
+    newObject.comments = newObject.comments.concat(newBlogComment)
+    console.log('kommentaren är gjord', newBlogComment);
+    dispatch(setBlogComments(individualBlog.id, newObject))
+    dispatch(setNotification(`you commented on ${individualBlog.title}`, 10))
   }
 
-  const deleteBlog = (id) => {
-    console.log('like', id)
-    dispatch(delBlog(id))
+  const deleteBlog = () => {
+    console.log('like', individualBlog.id)
+    dispatch(delBlog(individualBlog.id))
   }
 
   const handleBlogCommentChange = (event) => {
@@ -43,7 +45,7 @@ const Blog = () => {
   }
 
   const individualBlog = useSelector(({individualBlog}) => {
-    console.log(individualBlog);
+    // console.log('den kan hämta blog comments: ',individualBlog.comments);
     return individualBlog
   })
 
@@ -63,14 +65,14 @@ const Blog = () => {
         <br/>
         <button onClick={deleteBlog}>delete</button>
         <div>
-          <h3>Comments</h3>
-          <ul>
-            <li>Fin blog!</li>
-            <form onSubmit={addComments}>
-            <input id='Burl' value={newBlogComment} onChange={handleBlogCommentChange}/>
-            <button type="submit">comment</button>
-            </form>
-          </ul>
+        <h3>Comments</h3>
+        {individualBlog.comments.map( comment => 
+            <li key = {comment}> {comment} </li>
+        )}
+        <form onSubmit={addComments}>
+          <input value={newBlogComment} onChange={handleBlogCommentChange}/>
+          <button type="submit">comment</button>
+        </form>
         </div>
       </div>
     </div>

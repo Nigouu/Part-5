@@ -33,8 +33,10 @@ const BlogForm = ({ user }) => {
       author: newBlogAuthor,
       url: newBlogUrl,
       likes: 0,
+      comments: [], 
       user: user
     }
+    console.log(newObject);
     dispatch(createBlog(newObject))
     dispatch(setNotification(`${newObject.title} was added`, 10))
     // console.log(newObject.title, "det lyckades");

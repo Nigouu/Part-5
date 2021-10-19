@@ -1,4 +1,3 @@
-
 import blogService from '../services/blogs'
 
 const blogReducer = (state = [], action) => {
@@ -62,14 +61,13 @@ const blogReducer = (state = [], action) => {
     }
   }
 
-  export const setBlogComments = (id, newObject, comment) => {
+  export const setBlogComments = (id, newObject) => {
     return async dispatch => {
       const newComment = await blogService.update(id, newObject)
       dispatch({
         type: 'COMMENT',
         id: id,
-        data: newComment,
-        comment
+        data: newComment
       })
     }
   }

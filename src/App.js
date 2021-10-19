@@ -17,6 +17,7 @@ import {
   BrowserRouter as Router,
   Switch, Route, Link, useHistory
 } from "react-router-dom"
+import { Navbar, Nav } from 'react-bootstrap'
 
 
 
@@ -47,11 +48,33 @@ const App = () => {
       paddingRight: 5
     }
     return (
-      <div>
-        <Link to='/' style={padding} >Blogs</Link>
-        <Link to='/create' style={padding}>Create New</Link>
-        <Link to='/users' style={padding}>Users</Link>
-      </div>
+      // <div>
+      //   <Link to='/' style={padding} >Blogs</Link>
+      //   <Link to='/create' style={padding}>Create New</Link>
+      //   <Link to='/users' style={padding}>Users</Link>
+      // </div>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#" as="span">
+            <Link to='/' style={padding} >Blogs</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+            <Link to='/create' style={padding}>Create New</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+            <Link to='/users' style={padding}>Users</Link>
+            </Nav.Link>
+            {/* <Nav.Link href="#" as="span">
+              {user
+                ? <em style={padding}>{user} logged in</em>
+                : <Link style={padding} to="/login">login</Link>
+              }
+            </Nav.Link> */}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 
@@ -99,7 +122,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <Router>
         <h1>Blogs</h1>
         {user === null ? loginForm() :

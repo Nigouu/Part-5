@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router, Link
 } from "react-router-dom"
 import { setIndividualBlog } from '../reducers/IndividualBlogReducer'
+import { Table } from 'react-bootstrap'
 
 const BlogList = () => {
     const dispatch = useDispatch()
@@ -23,18 +24,22 @@ const BlogList = () => {
         <div>
             {sort(blogs)}
             {/* {blogs.map(blog => console.log("Alla blogs state i listan: ", blog.title))} */}
-            {blogs.map(blog =>
-                <div className='blog' key={blog.id}>
-                <div>
-                  <Link 
-                    to={`/blog/${blog.id}`} 
-                    onClick={() => dispatch(setIndividualBlog(blog))}> 
-                    Title: {blog.title}, Author: {blog.author}
-                  </Link>
-                </div>
-                <br/>
-              </div>
-            )}
+            <Table striped>
+              <tbody>
+                {blogs.map(blog =>
+                    <tr className='blog' key={blog.id}>
+                    <td>
+                      <Link 
+                        to={`/blog/${blog.id}`} 
+                        onClick={() => dispatch(setIndividualBlog(blog))}> 
+                        Title: {blog.title}, Author: {blog.author}
+                      </Link>
+                    </td>
+                    {/* <br/> */}
+                  </tr>
+                )}
+              </tbody>
+            </Table>
         </div>
     )
 }

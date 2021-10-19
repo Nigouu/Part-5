@@ -18,6 +18,8 @@ import {
   Switch, Route, Link, useHistory
 } from "react-router-dom"
 
+
+
 const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -117,7 +119,7 @@ const App = () => {
           <Route path='/users'>
             <UserInfo/>
           </Route>
-          <Route path='/blog' >
+          <Route path='/blog/:id'>
             <Blog/>
           </Route>
           <Route path="/">
